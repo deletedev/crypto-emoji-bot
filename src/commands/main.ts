@@ -32,7 +32,7 @@ export function setupStart(bot: Telegraf<ContextMessageUpdate>) {
         Extra.HTML(true) as ExtraEditMessage,
       )
 
-      //generate random encryption key and put it to db
+      //generate random encryption key and put it to DB
       const key = GenerateRandomKey()
       const keymodel = await KeyModel.findOne({ user: user._id })
       if (keymodel) {
