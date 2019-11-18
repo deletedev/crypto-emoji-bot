@@ -2,11 +2,13 @@
 import I18N from 'telegraf-i18n'
 import * as tt from 'telegraf/typings/telegram-types.d'
 import { User } from '../models'
-import { InstanceType } from 'typegoose'
+import { Key } from '../models/Key'
+import { DocumentType } from '@typegoose/typegoose'
 
 declare module 'telegraf' {
   export class ContextMessageUpdate {
-    dbuser: InstanceType<User>
+    dbuser: DocumentType<User>
+    keys: DocumentType<Key>[]
     i18n: I18N
   }
 

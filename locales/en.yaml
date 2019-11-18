@@ -1,5 +1,25 @@
 name: English
-help: |
-  <b>Bot</b> allows you to see how Telegraf bots can be built.
+hello: |
+  Hi. I'm <b>Crypto Emoji</b>. Let's fun! 
+
+  First, select the language.
 language: Please, select the language.
 language_selected: <b>Bot</b> now speaks English.
+first_private_key: |
+  Awesome! 
+  You can generate as many keys, as you need. Each of them is unique.
+
+  This is your first private key:
+first_private_key_2: ${key}
+encrypt: Encrypt
+keys: Keys
+just_send_message: Just send me a text message that you want to encrypt.
+already_registered: You already was registered!
+your_first_key: Your first key
+select_key: |
+  Select key:
+generate_new_key: New 🔑
+loading_string: Loading...
+no_keys: Please, create at least one key for encrypt your text.
+key_not_exists: Key is not exists.
+too_many_emoji: The encrypted result is too long for the Telegram API :(
