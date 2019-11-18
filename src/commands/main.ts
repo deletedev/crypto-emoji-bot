@@ -5,6 +5,7 @@ import { safeLoad } from 'js-yaml'
 import { ExtraEditMessage } from 'telegraf/typings/telegram-types'
 import { GenerateRandomKey } from '../helpers/crypto'
 import { KeyModel, Key } from '../models/Key'
+import { KeyBoard } from './crypto'
 export function setupStart(bot: Telegraf<ContextMessageUpdate>) {
   bot.command('start', ctx => {
     ctx.replyWithHTML(ctx.i18n.t('hello'), {
@@ -38,11 +39,7 @@ export function setupStart(bot: Telegraf<ContextMessageUpdate>) {
         return await ctx.telegram.sendMessage(
           message.chat.id,
           ctx.i18n.t('already_registered'),
-          m
-            .keyboard([ctx.i18n.t('encrypt'), ctx.i18n.t('keys')])
-            .oneTime()
-            .resize()
-            .extra(),
+          KeyBoard(ctx, true, true),
         )
       }
 
@@ -55,11 +52,7 @@ export function setupStart(bot: Telegraf<ContextMessageUpdate>) {
       await ctx.telegram.sendMessage(
         message.chat.id,
         ctx.i18n.t('first_private_key'),
-        m
-          .keyboard([ctx.i18n.t('encrypt'), ctx.i18n.t('keys')])
-          .oneTime()
-          .resize()
-          .extra(),
+        KeyBoard(ctx, true, true),
       )
 
       await ctx.telegram.sendMessage(

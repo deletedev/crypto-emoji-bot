@@ -56,7 +56,7 @@ export function setupCipher(bot: Telegraf<ContextMessageUpdate>) {
   })
 }
 
-function KeyBoard(ctx: any, encrypt?: boolean, keys?: boolean) {
+export function KeyBoard(ctx: any, encrypt?: boolean, keys?: boolean) {
   const result = []
   if (!encrypt && !keys) {
     result.push(ctx.i18n.t('encrypt'), ctx.i18n.t('keys'))
