@@ -1,0 +1,32 @@
+{
+  "name": "telegraf-template",
+  "version": "1.0.0",
+  "description": "Telegram bot template based on telegraf.js.org",
+  "main": "dist/app.js",
+  "repository": "https://github.com/backmeupplz/telegraf-template",
+  "author": "backmeupplz <backmeupplz@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "distribute": "yarn build-ts && node dist/app.js",
+    "develop": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold\" \"yarn watch-ts\" \"yarn watch-js\"",
+    "build-ts": "tsc --skipLibCheck",
+    "watch-ts": "tsc -w --skipLibCheck",
+    "watch-js": "nodemon dist/app.js"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.2",
+    "nodemon": "^1.19.2"
+  },
+  "dependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/mongoose": "^5.5.17",
+    "@types/node": "^12.7.5",
+    "dotenv": "^8.1.0",
+    "mongoose": "^5.7.0",
+    "telegraf": "^3.32.0",
+    "telegraf-i18n": "^6.6.0",
+    "typegoose": "^5.9.1",
+    "typescript": "^3.6.3"
+  }
+}
