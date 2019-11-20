@@ -1,7 +1,7 @@
 // Dependencies
 import { Telegraf, ContextMessageUpdate, Markup as m, Extra } from 'telegraf'
 import { Key, KeyModel } from '../models/Key'
-import { encrypt, decrypt } from '../helpers/crypto'
+import { encrypt, decrypt, decode } from '../helpers/crypto'
 const { match } = require('telegraf-i18n')
 
 export function setupCipher(bot: Telegraf<ContextMessageUpdate>) {
@@ -23,7 +23,7 @@ export function setupCipher(bot: Telegraf<ContextMessageUpdate>) {
     if (!key) {
       return await ctx.reply('key_not_exists')
     }
-    const encrypted = encrypt(message.text, key.key)
+    const encrypted = await encrypt(message.text, key.key)
 
     if (encrypted.length > 1800) {
       ctx.deleteMessage()
@@ -35,6 +35,29 @@ export function setupCipher(bot: Telegraf<ContextMessageUpdate>) {
       message.message_id,
       undefined,
       encrypted,
+    )
+  })
+
+  bot.action(/^dec_/, async ctx => {
+    const message = ctx.callbackQuery.message
+    const data = ctx.callbackQuery.data
+
+    const keyid = data.slice(4)
+
+    const key = await KeyModel.findById(keyid)
+
+    const decrypted = await decrypt(message.text, key.key)
+
+    if (decrypted.length > 1800) {
+      ctx.deleteMessage()
+      return await ctx.reply(ctx.i18n.t('too_many_emoji'))
+    }
+
+    return await ctx.telegram.editMessageText(
+      message.chat.id,
+      message.message_id,
+      undefined,
+      decrypted,
     )
   })
 
@@ -50,6 +73,14 @@ export function setupCipher(bot: Telegraf<ContextMessageUpdate>) {
     if (ctx?.keys?.length < 1) {
       return await ctx.reply(ctx.i18n.t('no_keys'), KeyBoard(ctx, false, true))
     }
+
+    const encrypted = await decode(ctx.message.text)
+    if (encrypted) {
+      return await ctx.reply(ctx.message.text, {
+        reply_markup: await inlineKeyboardDecryptKeys(ctx),
+      })
+    }
+
     return await ctx.reply(ctx.message.text, {
       reply_markup: await inlineKeyboardEncryptString(ctx),
     })
@@ -82,6 +113,23 @@ async function inlineKeyboardAllKeys(ctx: any) {
       result = `${result}${k + 1}. ${i.name} `
       keyboardresult.push([
         m.callbackButton(`${k + 1}. ${i.name}`, i._id.toString()),
+      ])
+    }),
+  )
+  keyboardresult.push([
+    m.callbackButton(ctx.i18n.t('generate_new_key'), 'new_key'),
+  ])
+  return m.inlineKeyboard(keyboardresult)
+}
+
+async function inlineKeyboardDecryptKeys(ctx: any) {
+  let result: string = ''
+  const keyboardresult = []
+  await Promise.all(
+    ctx.keys.map((i, k) => {
+      result = `${result}${k + 1}. ${i.name} `
+      keyboardresult.push([
+        m.callbackButton(`${k + 1}. ${i.name}`, `dec_${i._id.toString()}`),
       ])
     }),
   )

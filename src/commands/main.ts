@@ -17,7 +17,7 @@ export function setupStart(bot: Telegraf<ContextMessageUpdate>) {
     localesFiles().map(file => file.split('.')[0]),
     async ctx => {
       let user = ctx.dbuser
-      user.language = ctx.callbackQuery.data
+      user.language = ctx.callbackQuery.data ?? 'en'
       user = await (user as any).save()
       const message = ctx.callbackQuery.message
 
@@ -33,7 +33,7 @@ export function setupStart(bot: Telegraf<ContextMessageUpdate>) {
       )
 
       //generate random encryption key and put it to DB
-      const key = GenerateRandomKey()
+      const key = await GenerateRandomKey()
       const keymodel = await KeyModel.findOne({ user: user._id })
       if (keymodel) {
         return await ctx.telegram.sendMessage(
