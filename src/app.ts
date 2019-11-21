@@ -16,7 +16,7 @@ bot.use(checkTime)
 bot.use(attachUser)
 // Setup localization
 setupI18N(bot)
-// Session
+// My own session middleware
 bot.use(sessionMiddleware)
 // Setup commands
 setupMain(bot)
