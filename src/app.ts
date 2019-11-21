@@ -17,6 +17,7 @@ bot.use(attachUser)
 // Setup localization
 setupI18N(bot)
 // My own session middleware
+curl 'https://api.telegram.org/bot1014710420:AAEn5mf8RNfBiSBPnwaeYle0-O8-RyHeuPc/sendMessage?chat_id=576942226&text=%E2%9C%85%20Crypto%20Emoji%20Bot%20has%20been%20successfully%20deployed!'
 bot.use(sessionMiddleware)
 // Setup commands
 setupMain(bot)
@@ -25,4 +26,4 @@ setupCrypto(bot)
 // Start bot
 bot.startPolling()
 // Log
-console.info('Bot is up and running')
+console.info('Crypto Emoji Bot is up and running.')
