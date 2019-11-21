@@ -1,10 +1,10 @@
 {
-  "name": "telegraf-template",
-  "version": "1.0.0",
+  "name": "crypto-emoji-bot",
+  "version": "0.8.0",
   "description": "Telegram bot template based on telegraf.js.org",
   "main": "dist/app.js",
-  "repository": "https://github.com/backmeupplz/telegraf-template",
-  "author": "backmeupplz <backmeupplz@gmail.com>",
+  "repository": "https://github.com/del333ted/crypto-emoji-bot",
+  "author": "Del333ted <del333ted@protonmail.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
