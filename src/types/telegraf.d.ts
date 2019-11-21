@@ -5,10 +5,18 @@ import { User } from '../models'
 import { Key } from '../models/Key'
 import { DocumentType } from '@typegoose/typegoose'
 
+export interface Session {
+  stage: number
+  key: string
+  name: string
+}
+
 declare module 'telegraf' {
   export class ContextMessageUpdate {
     dbuser: DocumentType<User>
     keys: DocumentType<Key>[]
+    saveSession: () => any
+    session: Session
     i18n: I18N
   }
 

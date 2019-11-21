@@ -25,7 +25,7 @@ export async function encrypt(text: string, key: string) {
 }
 
 export async function decrypt(text: string, key: string) {
-  const replaceshit = _.replace(text, /(\u2642|\u200D|\uFE0F)/g, '')
+  const replaceshit = _.replace(text, /(\u2642|\u2640|\u200D|\uFE0F)/g, '')
   text = await ecoji.decode(replaceshit)
   key = await ecoji.decode(key)
   let textParts = text.split(':')
@@ -42,7 +42,7 @@ export async function decrypt(text: string, key: string) {
 export async function decode(emoji: string) {
   let result: any
   try {
-    const replaceshit = _.replace(emoji, /(\u2642|\u200D|\uFE0F)/g, '')
+    const replaceshit = _.replace(emoji, /(\u2642|\u2640|\u200D|\uFE0F)/g, '')
     result = await ecoji.decode(replaceshit)
   } catch (e) {
     result = false

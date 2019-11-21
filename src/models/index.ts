@@ -8,3 +8,5 @@ mongoose.set('useCreateIndex', true)
 
 // Export models
 export * from './User'
+export * from './Key'
+export * from './Session'

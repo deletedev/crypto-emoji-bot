@@ -9,5 +9,5 @@ export async function attachUser(ctx: ContextMessageUpdate, next) {
   const keys = (await KeyModel.find({ user: dbuser })) as DocumentType<Key>[]
   ctx.dbuser = dbuser
   ctx.keys = keys
-  next()
+  await next()
 }

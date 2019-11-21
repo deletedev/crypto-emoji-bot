@@ -6,9 +6,12 @@ import { ExtraEditMessage } from 'telegraf/typings/telegram-types'
 import { GenerateRandomKey } from '../helpers/crypto'
 import { KeyModel, Key } from '../models/Key'
 import { KeyBoard } from './crypto'
-export function setupStart(bot: Telegraf<ContextMessageUpdate>) {
-  bot.command('start', ctx => {
-    ctx.replyWithHTML(ctx.i18n.t('hello'), {
+import { saveSession } from '../helpers/session'
+export function setupMain(bot: Telegraf<ContextMessageUpdate>) {
+  bot.command('start', async (ctx, next) => {
+    ctx.session.stage = 1
+    await ctx.saveSession()
+    return await ctx.replyWithHTML(ctx.i18n.t('hello'), {
       reply_markup: languageKeyboard(),
     })
   })

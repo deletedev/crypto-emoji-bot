@@ -7,19 +7,40 @@ language: Please, select the language.
 language_selected: <b>Bot</b> now speaks English.
 first_private_key: |
   Awesome! 
-  You can generate as many keys, as you need. Each of them is unique.
+  You can generate up to 10 keys, if you need. Each of them is unique.
 
   This is your first private key:
 first_private_key_2: ${key}
-encrypt: Encrypt
+encode: Encode
 keys: Keys
-just_send_message: Just send me a text message that you want to encrypt.
+just_send_message: Just send me a text message that you want to encoded.
 already_registered: You already was registered!
 your_first_key: Your first key
-select_key: |
-  Select key:
+select_key: 'Select key:'
 generate_new_key: New 🔑
 loading_string: Loading...
-no_keys: Please, create at least one key for encrypt your text.
+no_keys: Please, create at least one key for encode your text.
 key_not_exists: Key is not exists.
-too_many_emoji: The encrypted result is too long for the Telegram API :(
+too_many_emoji: The encoded result is too long for the Telegram API :(
+decode: Decode
+decode_emoji: 🔒
+encode_emoji: 🔓
+decode_error: This is not encoded string or key is wrong.
+manage_key: >
+  <b>Name:</b> <i>${name}</i>
+
+
+  <b>Key:</b> 
+    
+  ${key}
+change_name: Change name
+delete_key: 🗑️
+back: Back
+new_key_input: 'Please, enter a name for the new key:'
+add_key: Add key
+generate_key: Generate key
+length_too_long_48: 'Length too long (> 48)'
+key_input: 'Send key:'
+name_input: 'Send name:'
+too_many_keys_string: 'You have many keys'
+select_adding_type_string: 'Select adding type:'

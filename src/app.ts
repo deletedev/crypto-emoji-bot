@@ -4,22 +4,26 @@ dotenv.config({ path: `${__dirname}/../.env` })
 // Dependencies
 import { bot } from './helpers/bot'
 import { checkTime } from './middlewares/checkTime'
-import { setupCipher } from './commands/crypto'
+import { setupCrypto } from './commands/crypto'
 import { setupI18N } from './helpers/i18n'
-import { setupStart } from './commands/main'
+import { setupMain } from './commands/main'
 import { attachUser } from './middlewares/attachUser'
-
+import { sessionMiddleware } from './middlewares/session'
+import { saveSession } from './helpers/session'
+const { middleware } = require('telegraf-session-mongodb')
 // Check time
 bot.use(checkTime)
 // Attach user
 bot.use(attachUser)
 // Setup localization
 setupI18N(bot)
+// Session
+bot.use(sessionMiddleware)
 // Setup commands
-setupStart(bot)
-setupCipher(bot)
+setupMain(bot)
+
+setupCrypto(bot)
 // Start bot
 bot.startPolling()
-
 // Log
 console.info('Bot is up and running')
