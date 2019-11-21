@@ -13,7 +13,7 @@ export async function GenerateRandomKey() {
   return CRYPTED_ECOJI as string
 }
 
-export async function encrypt(text: string, key: string) {
+export async function EncodeToEmoji(text: string, key: string) {
   key = ecoji.decode(key)
   let iv = crypto.randomBytes(16)
   let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv)
@@ -24,8 +24,8 @@ export async function encrypt(text: string, key: string) {
   return await ecoji.encode(toemoji)
 }
 
-export async function decrypt(text: string, key: string) {
-  const replaceshit = _.replace(text, /(\u2642|\u2640|\u200D|\uFE0F)/g, '')
+export async function DecodeToString(text: string, key: string) {
+  const replaceshit = ReplaceUTF8Surrogate(text)
   text = await ecoji.decode(replaceshit)
   key = await ecoji.decode(key)
   let textParts = text.split(':')
@@ -34,19 +34,22 @@ export async function decrypt(text: string, key: string) {
   let encryptedText = Buffer.from(textParts.join(':'), 'hex')
   let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), iv)
   let decrypted = decipher.update(encryptedText)
-  decrypted = Buffer.concat([decrypted, decipher.final()])
 
-  return decrypted.toString()
+  return Buffer.concat([decrypted, decipher.final()]).toString()
 }
 
-export async function decode(emoji: string) {
+export async function IsEncoded(emoji: string) {
   let result: any
   try {
-    const replaceshit = _.replace(emoji, /(\u2642|\u2640|\u200D|\uFE0F)/g, '')
+    const replaceshit = ReplaceUTF8Surrogate(emoji)
     result = await ecoji.decode(replaceshit)
   } catch (e) {
     result = false
   } finally {
-    return result
+    return result ? true : false
   }
+}
+
+export function ReplaceUTF8Surrogate(emoji: string) {
+  return _.replace(emoji, /(\u2642|\u2640|\u200D|\uFE0F)/g, '')
 }

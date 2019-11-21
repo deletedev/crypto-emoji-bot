@@ -4,9 +4,8 @@ import { readdirSync, readFileSync } from 'fs'
 import { safeLoad } from 'js-yaml'
 import { ExtraEditMessage } from 'telegraf/typings/telegram-types'
 import { GenerateRandomKey } from '../helpers/crypto'
-import { KeyModel, Key } from '../models/Key'
+import { KeyModel } from '../models/Key'
 import { KeyBoard } from './crypto'
-import { saveSession } from '../helpers/session'
 export function setupMain(bot: Telegraf<ContextMessageUpdate>) {
   bot.command('start', async (ctx, next) => {
     ctx.session.stage = 1
@@ -42,7 +41,7 @@ export function setupMain(bot: Telegraf<ContextMessageUpdate>) {
         return await ctx.telegram.sendMessage(
           message.chat.id,
           ctx.i18n.t('already_registered'),
-          KeyBoard(ctx, true, true),
+          KeyBoard(ctx),
         )
       }
 
@@ -55,7 +54,7 @@ export function setupMain(bot: Telegraf<ContextMessageUpdate>) {
       await ctx.telegram.sendMessage(
         message.chat.id,
         ctx.i18n.t('first_private_key'),
-        KeyBoard(ctx, true, true),
+        KeyBoard(ctx),
       )
 
       await ctx.telegram.sendMessage(

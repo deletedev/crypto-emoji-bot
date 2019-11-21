@@ -6,7 +6,7 @@ import { bot } from './helpers/bot'
 import { checkTime } from './middlewares/checkTime'
 import { setupCrypto } from './commands/crypto'
 import { setupI18N } from './helpers/i18n'
-import { setupMain } from './commands/main'
+import { setupMain } from './commands/start'
 import { attachUser } from './middlewares/attachUser'
 import { sessionMiddleware } from './middlewares/session'
 
@@ -16,7 +16,7 @@ bot.use(checkTime)
 bot.use(attachUser)
 // Setup localization
 setupI18N(bot)
-// My own session middleware
+// My session middleware
 bot.use(sessionMiddleware)
 // Setup commands
 setupMain(bot)

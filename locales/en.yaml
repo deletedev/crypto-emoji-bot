@@ -34,7 +34,7 @@ manage_key: >
     
   ${key}
 change_name: Change name
-delete_key: 🗑️
+delete_key: ❌
 back: Back
 new_key_input: 'Please, enter a name for the new key:'
 add_key: Add key

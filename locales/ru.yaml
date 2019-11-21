@@ -34,7 +34,7 @@ manage_key: >
     
   ${key}
 change_name: Изменить имя
-delete_key: 🗑️
+delete_key: ❌
 back: Назад
 new_key_input: 'Придумайте имя ключа:'
 add_key: Добавить ключ
