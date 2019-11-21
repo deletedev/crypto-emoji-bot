@@ -10,7 +10,6 @@ import { setupMain } from './commands/main'
 import { attachUser } from './middlewares/attachUser'
 import { sessionMiddleware } from './middlewares/session'
 import { saveSession } from './helpers/session'
-const { middleware } = require('telegraf-session-mongodb')
 // Check time
 bot.use(checkTime)
 // Attach user
