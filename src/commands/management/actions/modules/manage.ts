@@ -15,8 +15,8 @@ export async function manageKey(ctx: ContextMessageUpdate) {
   }
 
   const keyboard = m.inlineKeyboard([
-    [m.callbackButton(ctx.i18n.t('change_name'), `chg_${key}`)],
-    [m.callbackButton(ctx.i18n.t('delete_key'), `del_${key}`)],
+    [m.callbackButton(ctx.i18n.t('change_name'), `chg_${key._id.toString()}`)],
+    [m.callbackButton(ctx.i18n.t('delete_key'), `del_${key._id.toString()}`)],
     [m.callbackButton(ctx.i18n.t('back'), 'back')],
   ])
 
