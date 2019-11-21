@@ -9,7 +9,7 @@ import { setupI18N } from './helpers/i18n'
 import { setupMain } from './commands/main'
 import { attachUser } from './middlewares/attachUser'
 import { sessionMiddleware } from './middlewares/session'
-import { saveSession } from './helpers/session'
+
 // Check time
 bot.use(checkTime)
 // Attach user
