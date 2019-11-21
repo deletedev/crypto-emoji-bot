@@ -1,7 +1,7 @@
 {
   "name": "crypto-emoji-bot",
-  "version": "0.8.0",
-  "description": "Telegram bot template based on telegraf.js.org",
+  "version": "1.2.0",
+  "description": "Telegram bot for Encoding/Decoding strings to emoji. @cryptoemoji_bot",
   "main": "dist/app.js",
   "repository": "https://github.com/del333ted/crypto-emoji-bot",
   "author": "Del333ted <del333ted@protonmail.com>",
