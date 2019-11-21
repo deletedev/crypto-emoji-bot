@@ -1,6 +1,15 @@
 # Telegram bot for funny and strong cryptography
 
-https://t.me/crypto_emoji_bot
+# [@cryptoemoji_bot](https://t.me/crypto_emoji_bot)
+
+# Technologies 
+
+- Telegraf.js
+- TypeScript
+- Ecoji-js
+- MongoDB
+- Crypto (AES-256-CBC)
+- others...
 
 # Installation and local launch
 
