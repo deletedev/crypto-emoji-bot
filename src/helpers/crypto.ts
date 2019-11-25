@@ -1,4 +1,4 @@
-const ecoji = require('ecoji-js')
+import * as ecoji from 'ecoji-js'
 
 import * as crypto from 'crypto'
 import * as _ from 'lodash'
@@ -52,4 +52,18 @@ export async function IsEncoded(emoji: string) {
 
 export function ReplaceUTF8Surrogate(emoji: string) {
   return _.replace(emoji, /(\u2642|\u2640|\u200D|\uFE0F)/g, '')
+}
+
+export async function CheckValidation(key: string) {
+  const EXAMPLE_TEXT = 'Putin is huylo'
+  try {
+    const ENCODED = await EncodeToEmoji(EXAMPLE_TEXT, key)
+    const DECODED = await DecodeToString(ENCODED, key)
+    if (EXAMPLE_TEXT === DECODED) {
+      return true
+    }
+    return false
+  } catch {
+    return false
+  }
 }
