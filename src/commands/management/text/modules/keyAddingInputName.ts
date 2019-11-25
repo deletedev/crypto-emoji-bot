@@ -8,6 +8,7 @@ export async function keyAddingInputName(ctx: ContextMessageUpdate, next) {
     await next()
     return
   }
+
   if (ctx.keys.length > 9) {
     return await ctx.reply(ctx.i18n.t('too_many_keys_string'))
   }

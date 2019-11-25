@@ -8,8 +8,6 @@ import { textTrigger } from './crypto/textTrigger'
 import { setupManagement } from './management'
 
 export function setupCrypto(bot: Telegraf<ContextMessageUpdate>) {
-  // Setup key management
-  setupManagement(bot)
   // Crypto
   bot.hears(match('encode'), async ctx => {
     ctx.session.stage = 1
@@ -26,6 +24,8 @@ export function setupCrypto(bot: Telegraf<ContextMessageUpdate>) {
       reply_markup: await inlineKeyboardAllKeys(ctx),
     })
   })
+  // Setup key management
+  setupManagement(bot)
 
   // For non-clickable buttons
   bot.action('nothing', async ctx => {
