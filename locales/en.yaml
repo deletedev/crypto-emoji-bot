@@ -13,7 +13,7 @@ first_private_key: |
 first_private_key_2: ${key}
 encode: Encode
 keys: Keys
-just_send_message: Just send me a text message that you want to encoded.
+just_send_message: Just send me a text message that you want to encode.
 already_registered: You already was registered!
 your_first_key: Your first key
 select_key: 'Select key:'
