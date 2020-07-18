@@ -27,7 +27,7 @@
     "@types/node": "^12.7.5",
     "dotenv": "^8.1.0",
     "ecoji-js": "^1.1.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mongoose": "^5.7.0",
     "telegraf": "^3.32.0",
     "telegraf-i18n": "^6.6.0",
